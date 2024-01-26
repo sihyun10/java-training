@@ -18,27 +18,15 @@ public class CalculatorMethod {
                 System.out.print("계산할 연산자를 입력해주세요: ");
                 String operator = input.nextLine();
 
-                if (operator.equals("+")) {
-                    System.out.print("계산할 숫자를 입력해주세요: ");
-                    num = input.nextInt();
-                    result = add(result, num);
-                } else if (operator.equals("-")) {
-                    System.out.print("계산할 숫자를 입력해주세요: ");
-                    num = input.nextInt();
-                    result = sub(result, num);
-                } else if (operator.equals("*")) {
-                    System.out.print("계산할 숫자를 입력해주세요: ");
-                    num = input.nextInt();
-                    result = mul(result, num);
-                } else {
-                    System.out.println("잘못된 연산자입니다. 다시 시도해주세요.");
-                }
+                System.out.print("계산할 숫자를 입력해주세요: ");
+                num = input.nextInt();
+
+                result = calculator(operator, result, num);
             } else if (choice == 2) {
                 System.out.println("총 값의 결과는 " + result);
             } else if (choice == 3) {
                 result = 0;
                 System.out.println("값이 모두 초기화 되었습니다.");
-                System.out.println("다시 계산을 시작하려면 1, 종료하려면 4를 선택해주세요.");
             } else if (choice == 4) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
@@ -48,23 +36,33 @@ public class CalculatorMethod {
         }
     }
 
-    public static int add(int result, int num) {
+    public static int calculator(String operator, int result, int num) {
+        switch (operator) {
+            case "+" -> result = add(result, num);
+            case "-" -> result = sub(result, num);
+            case "*" -> result = mul(result, num);
+            default -> System.out.println("잘못된 연산자입니다. 다시 시도해주세요.");
+        }
+        return result;
+    }
+
+    private static int add(int result, int num) {
         result += num;
         System.out.println("숫자 " + num + "을 더하셨습니다. 현재 값의 결과는 " + result);
         return result;
     }
 
-    public static int sub(int result, int num) {
+    private static int sub(int result, int num) {
         if (num < result) {
             result -= num;
             System.out.println("숫자 " + num + "을 빼셨습니다. 현재 값의 결과는 " + result);
         } else {
-            System.out.println("현재 값의 결과보다 큰 값입니다. 다시 시도해주세요");
+            System.out.println("값의 결과값이 음수입니다. 다시 시도해주세요.");
         }
         return result;
     }
 
-    public static int mul(int result, int num) {
+    private static int mul(int result, int num) {
         result *= num;
         System.out.println("숫자 " + num + "을 곱하셨습니다. 현재 값의 결과는 " + result);
         return result;
