@@ -4,24 +4,22 @@ public class EntertainmentAgencyMain {
     public static void main(String[] args) {
         EntertainmentAgency[] agency = new EntertainmentAgency[3];
 
-        EntertainmentAgency itzy = new EntertainmentAgency();
-        itzy.groupName = "있지";
-        itzy.people = 5;
-        itzy.song = "DALLA DALLA";
-        agency[0] = itzy;
+        agency[0] = createAgency("있지", 5, "DALLA DALLA");
+        agency[1] = createAgency("엔믹스", 6, "DASH");
+        agency[2] = createAgency("데이식스", 4, "예뻤어");
 
-        EntertainmentAgency nmixx = new EntertainmentAgency();
-        nmixx.groupName = "엔믹스";
-        nmixx.people = 6;
-        nmixx.song = "DASH";
-        agency[1] = nmixx;
+        printAgency(agency);
+    }
 
-        EntertainmentAgency day6 = new EntertainmentAgency();
-        day6.groupName = "데이식스";
-        day6.people = 4;
-        day6.song = "예뻤어";
-        agency[2] = day6;
+    private static EntertainmentAgency createAgency(String groupName, int people, String song) {
+        EntertainmentAgency jyp = new EntertainmentAgency();
+        jyp.groupName = groupName;
+        jyp.people = people;
+        jyp.song = song;
+        return jyp;
+    }
 
+    private static void printAgency(EntertainmentAgency[] agency) {
         for (EntertainmentAgency jyp : agency) {
             System.out.println("그룹 " + jyp.groupName + "는 총 " + jyp.people + "명의 인원이며, 대표노래로는 " + jyp.song + "라는 곡이 있다.");
         }
