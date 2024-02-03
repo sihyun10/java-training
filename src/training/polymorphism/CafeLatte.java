@@ -1,6 +1,6 @@
 package training.polymorphism;
 
-public class CafeLatte extends CafeDrink {
+public class CafeLatte implements CafeDrink {
     @Override
     public void recipe() {
         System.out.println("카페라떼 레시피");

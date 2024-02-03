@@ -1,20 +1,21 @@
 package training.polymorphism;
 
+import java.util.Scanner;
+
 public class CafeOrderMain {
     public static void main(String[] args) {
-        Americano americano = new Americano();
-        CafeLatte cafeLatte = new CafeLatte();
-        VanillaLatte vanillaLatte = new VanillaLatte();
+        Scanner scanner = new Scanner(System.in);
+        Worker worker = new Worker();
 
-        CafeDrink[] drinks = {americano, cafeLatte, vanillaLatte};
+        while (true) {
+            System.out.print("어떤 음료를 만들까요?");
+            String drink = scanner.nextLine();
+            if (drink.equals("종료")) {
+                System.out.println("프로그램이 종료됩니다.");
+                break;
+            }
 
-        for (CafeDrink drink : drinks) {
-            comeOut(drink);
+            worker.made(drink);
         }
-    }
-
-    private static void comeOut(CafeDrink drink) {
-        drink.recipe();
-        System.out.println("음료 완료되었습니다.");
     }
 }
