@@ -13,6 +13,15 @@ public enum Membership {
         this.benefits = benefits;
     }
 
+    public static Membership findByMembershipType(String membershipType) {
+        for (Membership membership : values()) {
+            if (membership.name().equals(membershipType)) {
+                return membership;
+            }
+        }
+        return null;
+    }
+
     public int getDiscountPercent() {
         return discountPercent;
     }
@@ -22,7 +31,7 @@ public enum Membership {
     }
 
     //할인로직
-    public int discount(int price) {
+    public int calculateDiscount(int price) {
         return price * discountPercent / 100;
     }
 }
