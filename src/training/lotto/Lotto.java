@@ -10,7 +10,6 @@ public class Lotto {
 
     public int[] extract() {
         lottoNumbers = new int[6];
-        count = 0;
 
         while (count < 6) {
             int num = extractNumber();
