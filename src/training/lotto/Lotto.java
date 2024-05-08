@@ -7,11 +7,16 @@ public class Lotto {
     private final Random random = new Random();
     private int[] lottoNumbers;
     private int count;
+    private final int totalNumber;
+
+    Lotto(int totalNumber) {
+        this.totalNumber = totalNumber;
+    }
 
     public int[] extract() {
-        lottoNumbers = new int[6];
+        lottoNumbers = new int[totalNumber];
 
-        while (count < 6) {
+        while (count < totalNumber) {
             int num = extractNumber();
             if (!isDuplicate(num)) {
                 lottoNumbers[count] = num;
