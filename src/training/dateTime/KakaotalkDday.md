@@ -4,9 +4,9 @@
   - 다가오는 디데이 (`D-18`)
   - 얼만큼 흘렀는지 세주는 디데이 (`D+74`)
 
-<img src="C:\Users\USER\Desktop\java\java-training\src\training\dateTime\dday_image.jpg" with="160" height="250"/>
+<img src="https://github.com/sihyun10/java-training/assets/92582664/a1d4a31c-e43b-4bb8-a16d-ca35a7bc99ab" with="160" height="250"/>
 
-<img src="C:\Users\USER\Desktop\java\java-training\src\training\dateTime\coming_dday.jpg" with="160" height="250"/>   
+<img src="https://github.com/sihyun10/java-training/assets/92582664/022e9451-6243-4d2f-954a-61c5fae92f90" with="160" height="250"/>   
 
 카카오톡에서 디데이를 추가하고자 할때,   
 **날짜 선택**, **설정일로부터 1일**(디데이 날짜를 1일로 포함 여부) 을 선택해주어야 한다.   
