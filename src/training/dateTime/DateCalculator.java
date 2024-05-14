@@ -21,16 +21,14 @@ public class DateCalculator {
     }
 
     private static void comingDday(LocalDate setDate) {
-        long daysBetween = ChronoUnit.DAYS.between(DateCalculator.nowDate, setDate);
+        long daysBetween = calculateDaysBetween(nowDate, setDate);
         System.out.println("D-" + daysBetween);
     }
 
     private static void passDday(LocalDate setDate, String include) {
-        long daysBetween = 0;
+        long daysBetween = calculateDaysBetween(setDate, nowDate);
         if (include.equals("네")) {
-            daysBetween = ChronoUnit.DAYS.between(setDate, DateCalculator.nowDate) + 1;
-        } else if (include.equals("아니오")) {
-            daysBetween = ChronoUnit.DAYS.between(setDate, DateCalculator.nowDate);
+            daysBetween += 1L;
         }
 
         System.out.println("D+" + daysBetween);
@@ -38,10 +36,14 @@ public class DateCalculator {
 
     private static void nowDday(LocalDate setDate, String include) {
         if (include.equals("네")) {
-            long daysBetween = ChronoUnit.DAYS.between(setDate, DateCalculator.nowDate) + 1;
+            long daysBetween = calculateDaysBetween(setDate, nowDate) + 1L;
             System.out.println("D+" + daysBetween);
         } else {
             System.out.println("D-DAY");
         }
+    }
+
+    private static long calculateDaysBetween(LocalDate startDate, LocalDate endDate) {
+        return ChronoUnit.DAYS.between(startDate, endDate);
     }
 }
