@@ -1,5 +1,7 @@
 package training.dateTime;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
@@ -11,12 +13,11 @@ public class KakaoDday {
             try {
                 System.out.print("설정하고자 하는 날짜를 입력해주세요[2024.05.14]: ");
                 String date = scanner.nextLine();
+                validateDate(date);
+
                 System.out.print("설정 날짜를 1일로 포함하겠습니까?[네/아니오]: ");
                 String include = scanner.nextLine();
-
-                if (!include.equals("네") && !include.equals("아니오")) {
-                    throw new IllegalArgumentException("[ERROR] '네' 또는 '아니오'로 입력해주세요.");
-                }
+                validateIncludeOption(include);
 
                 DateCalculator.calculateDday(date, include);
                 break;
@@ -25,6 +26,17 @@ public class KakaoDday {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static void validateDate(String date) throws DateTimeParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        LocalDate.parse(date, formatter);
+    }
+
+    private static void validateIncludeOption(String include) {
+        if (!include.equals("네") && !include.equals("아니오")) {
+            throw new IllegalArgumentException("[ERROR] '네' 또는 '아니오'로 입력해주세요.");
         }
     }
 }
