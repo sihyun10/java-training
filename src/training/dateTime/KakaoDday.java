@@ -13,10 +13,17 @@ public class KakaoDday {
                 String date = scanner.nextLine();
                 System.out.print("설정 날짜를 1일로 포함하겠습니까?[네/아니오]: ");
                 String include = scanner.nextLine();
+
+                if (!include.equals("네") && !include.equals("아니오")) {
+                    throw new IllegalArgumentException("[ERROR] '네' 또는 '아니오'로 입력해주세요.");
+                }
+
                 DateCalculator.calculateDday(date, include);
                 break;
             } catch (DateTimeParseException e) {
                 System.out.println("[ERROR] 올바른 날짜형식으로 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

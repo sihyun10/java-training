@@ -46,3 +46,15 @@ Exception in thread "main" java.time.format.DateTimeParseException: Text '202405
 	at training.dateTime.DateCalculator.calculateDday(DateCalculator.java:12)
 	at training.dateTime.KakaoDday.main(KakaoDday.java:20)
 ```
+
+2) 설정일로부터 1일 포함여부인 `네`,`아니오`가 아닌 값을 입력하였을 경우  
+`IllegalArgumentException`예외를 발생시켰다.  
+**throw** 키워드를 통해 새로운 예외를 발생시켰다.  
+
+```java
+if (!include.equals("네") && !include.equals("아니오")) {
+    throw new IllegalArgumentException("[ERROR] '네' 또는 '아니오'로 입력해주세요.");
+}
+```
+
+(여기서 `IllegalArgumentException`예외를 발생시킨 이유는 입력받은 값이 유효하지 않을 때, 이를 명확하게 처리하기 위해서입니다.)
