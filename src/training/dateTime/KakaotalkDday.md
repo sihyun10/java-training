@@ -30,3 +30,19 @@
   5-2) 설정일로부터 1일 포함이 아니라면, `D-DAY` 출력
 
 ----------------------------------
+
+### 예외 처리
+
+1) 설정하고자 하는 날짜를 잘못 입력하면 예외 발생   
+`DateTimeParseException`예외가 발생하게 된다.
+
+```dtd
+설정하고자 하는 날짜를 입력해주세요[2024.05.14]: 20240512
+설정 날짜를 1일로 포함하겠습니까?[네/아니오]: 아니오
+Exception in thread "main" java.time.format.DateTimeParseException: Text '20240512' could not be parsed at index 0
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2108)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:2010)
+	at java.base/java.time.LocalDate.parse(LocalDate.java:435)
+	at training.dateTime.DateCalculator.calculateDday(DateCalculator.java:12)
+	at training.dateTime.KakaoDday.main(KakaoDday.java:20)
+```
