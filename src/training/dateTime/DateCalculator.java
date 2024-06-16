@@ -2,7 +2,6 @@ package training.dateTime;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
 public class DateCalculator {
@@ -46,10 +45,5 @@ public class DateCalculator {
 
     private static long calculateDaysBetween(LocalDate startDate, LocalDate endDate) {
         return ChronoUnit.DAYS.between(startDate, endDate);
-    }
-
-    //날짜 입력 검증
-    public static void validateDate(String date) throws DateTimeParseException {
-        LocalDate.parse(date, formatter);
     }
 }
