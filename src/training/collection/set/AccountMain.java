@@ -16,18 +16,19 @@ public class AccountMain {
             System.out.println(account);
         }
 
-        Account range = new Account("", 10, "");
-        
-        SortedSet<Account> underTenSet = accountSet.headSet(range);
-        SortedSet<Account> aboveTenSet = accountSet.tailSet(range);
+        printFilteredAccounts(accountSet,10);
+    }
 
-        System.out.println("10살 미만 회원 출력");
-        for (Account member : underTenSet) {
+    private static void printFilteredAccounts(SortedSet<Account> accounts, int ageThreshold) {;
+        System.out.println(ageThreshold + "살 미만 회원 출력");
+        SortedSet<Account> underAgeSet = accounts.headSet(new Account("", ageThreshold, ""));
+        for (Account member : underAgeSet) {
             System.out.println(member);
         }
 
-        System.out.println("10살 이상 회원 출력");
-        for (Account member : aboveTenSet) {
+        System.out.println(ageThreshold + "살 이상 회원 출력");
+        SortedSet<Account> aboveAgeSet = accounts.tailSet(new Account("", ageThreshold, ""));
+        for (Account member : aboveAgeSet) {
             System.out.println(member);
         }
     }

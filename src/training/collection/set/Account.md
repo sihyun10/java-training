@@ -118,3 +118,28 @@ Account range = new Account("", 10, "");
 SortedSet<Account> underTenSet = accountSet.headSet(range); //10살 미만
 SortedSet<Account> aboveTenSet = accountSet.tailSet(range); //10살 이상
 ```
+
+--------------------------------------------------
+
+#### 예제 3  
+
+현재 출력되고 있는 코드 부분이 비슷하다.  
+메서드로 분리해보자! 재사용성을 높여보자.  
+
+```java
+private static void printFilteredAccounts(SortedSet<Account> accounts, int ageThreshold) {;
+  System.out.println(ageThreshold + "살 미만 회원 출력");
+  SortedSet<Account> underAgeSet = accounts.headSet(new Account("", ageThreshold, ""));
+  for (Account member : underAgeSet) {
+    System.out.println(member);
+  }
+
+  System.out.println(ageThreshold + "살 이상 회원 출력");
+  SortedSet<Account> aboveAgeSet = accounts.tailSet(new Account("", ageThreshold, ""));
+  for (Account member : aboveAgeSet) {
+    System.out.println(member);
+  }
+}
+```
+
+몇 살을 기준으로 출력할껀지 매개변수로 입력받으면 미만 회원, 이상 회원이 출력되게끔 메서드로 구현하였다.
