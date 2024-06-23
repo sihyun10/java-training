@@ -143,3 +143,47 @@ private static void printFilteredAccounts(SortedSet<Account> accounts, int ageTh
 ```
 
 몇 살을 기준으로 출력할껀지 매개변수로 입력받으면 미만 회원, 이상 회원이 출력되게끔 메서드로 구현하였다.
+
+하지만, 전체 회원을 출력하는 코드든 `printFilteredAccounts()`메서드를 보면   
+아래 코드와 같이 출력되는 코드 부분이 똑같다.   
+이 부분도 메서드로 분리하자!  
+
+```java
+for (Account account : accountSet) {
+    System.out.println(account);
+}
+
+for (Account member : underAgeSet) {
+    System.out.println(member);
+}
+
+for (Account member : aboveAgeSet) {
+    System.out.println(member);
+}
+```
+
+아래와 같이 메서드(`printAccounts()`)로 분리하였다.
+```java
+private static void printAccounts(SortedSet<Account> accounts) {
+    for (Account account : accounts) {
+        System.out.println(account);
+    }
+}
+```
+------------------------------------------------------
+
+#### 최종 출력 코드  
+
+```
+전체 회원 출력
+Account{name='맹구', age=5, id='boo'}
+Account{name='짱구', age=5, id='ShinNohara'}
+Account{name='원숭이', age=10, id='monkey'}
+Account{name='홍길동', age=12, id='honggildong'}
+10살 미만 회원 출력
+Account{name='맹구', age=5, id='boo'}
+Account{name='짱구', age=5, id='ShinNohara'}
+10살 이상 회원 출력
+Account{name='원숭이', age=10, id='monkey'}
+Account{name='홍길동', age=12, id='honggildong'}
+```
