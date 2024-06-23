@@ -38,6 +38,83 @@ public class AccountMain {
 ```
 
 똑같은 회원정보가 있는경우 `false`를 반환하고 값을 추가하지않는다.  
-이것이 Set 자료구조의 특징이다.  
+이것이 Set 자료구조의 특징이다.   
 
+<br>
 
+#### (참고)   
+
+```java
+boolean result = accountSet.contains(new Account("짱구", 5, "ShinNohara"));
+System.out.println("찾으시는 회원이 있습니까? " + result); //true
+```
+
+`contains()` 메서드를 통해 `accountSet`에 이 회원이 있는지 검색할 수 있다.  
+
+-----------------------------------------------------------------
+
+#### 예제 2  
+
+`TreeSet`은 데이터값을 기준으로 정렬하는 특징을 가지고 있다.  
+이 특징을 살려 회원이 가입될때, 정렬이 되도록 하자.  
+
+회원은 `이름`, `나이`, `아이디` 로 가입이 된다.  
+`나이` 순으로 정렬하되, `나이`가 같으면 `이름`을 기준으로 정렬시킨다.  
+
+```java
+public class Account implements Comparable<Account> {
+  ...
+}
+```
+
+```java
+@Override
+public int compareTo(Account account) {
+    if (this.age == account.age) {
+        return this.name.compareTo(account.name);
+    }
+    return this.age - account.age;
+}
+```
+
+`compareTo()` 메서드를 오버라이딩해서 나이, 이름을 기준으로 비교할 수 있게 한다.  
+따라서 이 메서드를 사용해 객체들이 정렬한다.  
+
+```java
+//예시
+public class AccountMain {
+  public static void main(String[] args) {
+      TreeSet<Account> accountSet = new TreeSet<>();
+      accountSet.add(new Account("홍길동", 12, "honggildong"));
+      accountSet.add(new Account("홍길동", 12, "honggildong"));
+      accountSet.add(new Account("짱구", 5, "ShinNohara"));
+      accountSet.add(new Account("맹구", 5, "boo"));
+      accountSet.add(new Account("원숭이", 10, "monkey"));
+  }  
+}
+```
+```dtd
+Account{name='맹구', age=5, id='boo'}
+Account{name='짱구', age=5, id='ShinNohara'}
+Account{name='원숭이', age=10, id='monkey'}
+Account{name='홍길동', age=12, id='honggildong'}
+```
+
+나이(`age`) 순서대로 오름차순 정렬이 되었고, 나이가 같으면 이름(`name`)을 기준으로 정렬된다.  
+
+<br>
+
+**+) 추가**  
+
+#### 지정된 나이 값보다 크거나 작은 회원 검색 기능  
+
+`TreeSet`에서 제공하는 `headSet(E toElement)`, `tailSet(E fromElement)` 메서드를 활용하여 10세 미만, 10세 이상 회원을 구분하여 출력해보자.  
+
+- `headSet(E toElement)`: 파라미터보다 작은 값 반환 (to 요소 제외)
+- `tailSet(E fromElement)`: 파라미터보다 큰 값 반환 (from 요소 포함)  
+
+```java
+Account range = new Account("", 10, "");
+SortedSet<Account> underTenSet = accountSet.headSet(range); //10살 미만
+SortedSet<Account> aboveTenSet = accountSet.tailSet(range); //10살 이상
+```

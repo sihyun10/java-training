@@ -2,7 +2,7 @@ package training.collection.set;
 
 import java.util.Objects;
 
-public class Account {
+public class Account implements Comparable<Account> {
     private final String name;
     private final int age;
     private final String id;
@@ -33,5 +33,13 @@ public class Account {
     @Override
     public int hashCode() {
         return Objects.hash(name, age, id);
+    }
+
+    @Override
+    public int compareTo(Account account) {
+        if (this.age == account.age) {
+            return this.name.compareTo(account.name);
+        }
+        return this.age - account.age;
     }
 }
